@@ -7,4 +7,20 @@ module.exports = [
       policies: [],
     },
   },
+  {
+    method: "GET",
+    path: "/export",
+    handler: "importExport.exportRestaurants",
+    config: {
+      policies: [],
+    },
+  },
+  {
+    method: "POST",
+    path: "/import",
+    handler: "importExport.importRestaurants",
+    config: {
+      policies: [],
+    },
+  },
 ];
