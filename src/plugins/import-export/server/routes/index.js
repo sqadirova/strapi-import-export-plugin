@@ -10,7 +10,7 @@ module.exports = [
   {
     method: "GET",
     path: "/export",
-    handler: "importExport.exportRestaurants",
+    handler: "importExportController.exportRestaurants",
     config: {
       policies: [],
     },
@@ -18,7 +18,7 @@ module.exports = [
   {
     method: "POST",
     path: "/import",
-    handler: "importExport.importRestaurants",
+    handler: "importExportController.importRestaurants",
     config: {
       policies: [],
     },

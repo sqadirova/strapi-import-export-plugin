@@ -1,9 +1,9 @@
 'use strict';
 
 const myController = require('./my-controller');
-const importExport = require('./import-export');
+const importExportController = require('./import-export');
 
 module.exports = {
   myController,
-  importExport,
+  importExportController,
 };
