@@ -9,19 +9,19 @@ import React, {memo, useState, useEffect} from 'react';
 import {Button, Layout, BaseHeaderLayout, ContentLayout, EmptyStateLayout} from '@strapi/design-system';
 import importExportRequests from "../../api/import-export";
 import {Illo} from "../../components/Illo";
-// import { JsonDataList } from "../../components/JsonDataList";
+import JsonDataList, {JsonDataInput} from "../../components/JsonDataList";
 import {JSONInput} from '@strapi/design-system';
 
 
 const HomePage = () => {
   const [restaurantsData, setRestaurantsData] = useState({restaurantsData: []});
-  const [isClicked, setIsClicked] = useState(false);
+  // const [isClicked, setIsClicked] = useState(false);
 
   const fetchData = async () => {
     const restaurants = await importExportRequests.getAllRestaurants();
     console.log("restaurants: ", restaurants)
     setRestaurantsData(restaurants);
-    setIsClicked(true);
+    // setIsClicked(true);
   }
 
   console.log("---restaurantsData: ", restaurantsData)
@@ -56,13 +56,14 @@ const HomePage = () => {
               content="You don't have any restaurants yet..."
             />
           ) : (
-            // {isClicked === true ? (
-            //   <JSONInput value={JSON.stringify(restaurantsData)}/>
-            // ):(
-            //   <JSONInput value={JSON.stringify(restaurantsData)}/>
-            // )}
-            <JSONInput value={JSON.stringify(restaurantsData)}/>
-            )}
+            <div>
+              <h2 style={{color: "white"}}>Exported data</h2>
+              <JsonDataList
+                entries={restaurantsData}
+              />
+            </div>
+          )}
+
         </ContentLayout>
       </Layout>
     </div>
