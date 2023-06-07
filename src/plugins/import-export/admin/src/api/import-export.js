@@ -6,6 +6,11 @@ const importExportRequests = {
       method: "GET",
     });
   },
+  getAllData: async () => {
+    return await request("/import-export/export/all", {
+      method: "GET",
+    });
+  },
 
   addRestaurants: async (data) => {
     return await request(`/import-export/import`, {

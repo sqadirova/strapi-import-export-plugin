@@ -16,6 +16,15 @@ module.exports = [
     },
   },
   {
+    method: "GET",
+    path: "/export/all",
+    handler: "importExportController.exportAllData",
+    config: {
+      policies: [],
+    },
+  },
+
+  {
     method: "POST",
     path: "/import",
     handler: "importExportController.importRestaurants",
@@ -23,4 +32,17 @@ module.exports = [
       policies: [],
     },
   },
+
+  {
+    method: 'POST',
+    path: '/import/upload',
+    handler: 'importExportController.uploadAndImport',
+    config: {
+      policies: [],
+      multer: {
+        enabled: true,
+      },
+    },
+  },
+
 ];
