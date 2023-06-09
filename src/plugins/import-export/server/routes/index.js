@@ -1,3 +1,4 @@
+const {authPolicy} = require("../policies");
 module.exports = [
   {
     method: 'GET',
@@ -24,24 +25,21 @@ module.exports = [
     },
   },
 
-  {
-    method: "POST",
-    path: "/import",
-    handler: "importExportController.importRestaurants",
-    config: {
-      policies: [],
-    },
-  },
+  // {
+  //   method: "POST",
+  //   path: "/import",
+  //   handler: "importExportController.importRestaurants",
+  //   config: {
+  //     policies: [],
+  //   },
+  // },
 
   {
     method: 'POST',
     path: '/import/upload',
     handler: 'importExportController.uploadAndImport',
     config: {
-      policies: [],
-      multer: {
-        enabled: true,
-      },
+      "policies": [authPolicy],
     },
   },
 

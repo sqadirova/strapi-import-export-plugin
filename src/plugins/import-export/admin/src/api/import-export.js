@@ -12,12 +12,22 @@ const importExportRequests = {
     });
   },
 
-  addRestaurants: async (data) => {
-    return await request(`/import-export/import`, {
+  uploadAndImportData: async (formData) => {
+    return await request('/import-export/import/upload', {
       method: "POST",
-      body: {data: data},
+      header: {
+        'Content-Type': 'multipart/form-data',
+      },
+      body: {formData: formData}
     });
   },
+
+  // addRestaurants: async (data) => {
+  //   return await request(`/import-export/import`, {
+  //     method: "POST",
+  //     body: {data: data},
+  //   });
+  // },
 
 };
 

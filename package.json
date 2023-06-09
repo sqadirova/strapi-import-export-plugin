@@ -15,8 +15,7 @@
     "@strapi/plugin-users-permissions": "4.10.5",
     "@strapi/strapi": "4.10.5",
     "multer": "^1.4.5-lts.1",
-    "pg": "8.8.0",
-    "strapi-plugin-import-export-entries": "^1.20.0"
+    "pg": "8.8.0"
   },
   "author": {
     "name": "A Strapi developer"

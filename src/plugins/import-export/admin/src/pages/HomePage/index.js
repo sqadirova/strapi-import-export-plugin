@@ -10,8 +10,8 @@ import {Button, Layout, BaseHeaderLayout, ContentLayout, EmptyStateLayout} from 
 import importExportRequests from "../../api/import-export";
 import {Illo} from "../../components/Illo";
 import JsonDataList from "../../components/JsonDataList";
-import FileUploadSingle from "../../components/ImportData"
-import ImportData from "../../components/ImportData";
+// import FileUploadSingle from "../../components/ImportData"
+// import ImportData from "../../components/ImportData";
 // import {JSONInput} from '@strapi/design-system';
 // import { Input } from '@buffetjs/core';
 import request from 'axios';
@@ -39,11 +39,6 @@ const HomePage = () => {
   //   await fetchData();
   // }, [])
 
-  async function importRestaurants(data) {
-    await importExportRequests.addRestaurants(data);
-    await fetchData();
-  }
-
   //import page
   const [file, setFile] = useState(null);
 
@@ -52,18 +47,26 @@ const HomePage = () => {
   };
 
   const handleImport = async () => {
+    console.log("Handle import!!!");
     const formData = new FormData();
+    console.log("file: ",file)
     formData.append('file', file);
+    console.log("formData: ",formData)
 
     try {
-      await request.post('/import/upload', formData, {
+
+      let importedData = await request.post('http://localhost:1337/import-export/import/upload', formData, {
+        method: "POST",
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
+      console.log(importedData.data)
+
       // Handle success, e.g., show success message
     } catch (error) {
+      console.log("error: ",error);
       // Handle error, e.g., show error message
     }
   };
@@ -151,7 +154,8 @@ const HomePage = () => {
             color='white'
           />
           <input type="file" accept=".json" onChange={handleFileChange} />
-          <button onClick={handleImport}>Import</button>
+          <Button onClick={handleImport}>Import</Button>
+          {/*<button onClick={handleImport}>Import</button>*/}
         </div>
 
       </Layout>

@@ -1,3 +1,8 @@
 'use strict';
 
-module.exports = {};
+const authPolicy = require('./isAuthenticated');
+
+
+module.exports = {
+  authPolicy,
+};
