@@ -18,7 +18,7 @@ const importExportRequests = {
       header: {
         'Content-Type': 'multipart/form-data',
       },
-      body: {formData: formData}
+      body: {file: formData}
     });
   },
 

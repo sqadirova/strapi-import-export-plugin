@@ -1,4 +1,7 @@
 const {authPolicy} = require("../policies");
+const {jwtMiddleware} = require("../middlewares");
+
+
 module.exports = [
   {
     method: 'GET',
@@ -39,7 +42,10 @@ module.exports = [
     path: '/import/upload',
     handler: 'importExportController.uploadAndImport',
     config: {
-      "policies": [authPolicy],
+      create: {
+        auth: false
+      },
+      policies: [],
     },
   },
 

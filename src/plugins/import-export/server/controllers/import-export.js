@@ -42,12 +42,15 @@ module.exports = ({strapi}) => ({
     console.log("upload and import data: ", data);
 
     // Create entries using Strapi services and models
-    const {model} = strapi.query('restaurants');
-    console.log("model: ", model)
+    // const {model} = strapi.query('restaurants');
+    // console.log("model: ", model)
     //    const {model} = strapi.db.query('api::restaurants.restaurants');
     // for (const entryData of data) {
     //   await model.create(entryData);
     // }
+
+    await strapi.plugin("import-export").service("importExportService").uploadAndImport(data)
+
 
     // Delete the temporary file
     fs.unlinkSync(filePath);
