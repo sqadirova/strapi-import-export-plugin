@@ -27,16 +27,6 @@ module.exports = [
       policies: [],
     },
   },
-
-  // {
-  //   method: "POST",
-  //   path: "/import",
-  //   handler: "importExportController.importRestaurants",
-  //   config: {
-  //     policies: [],
-  //   },
-  // },
-
   {
     method: 'POST',
     path: '/import/upload',

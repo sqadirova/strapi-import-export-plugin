@@ -1,4 +1,4 @@
-import {request} from "@strapi/helper-plugin";
+import {request, useFetchClient} from "@strapi/helper-plugin";
 
 const importExportRequests = {
   getAllRestaurants: async () => {
@@ -13,12 +13,15 @@ const importExportRequests = {
   },
 
   uploadAndImportData: async (formData) => {
+    console.log("formData in requests: ", formData)
     return await request('/import-export/import/upload', {
       method: "POST",
-      header: {
-        'Content-Type': 'multipart/form-data',
-      },
-      body: {file: formData}
+      // header: {
+      //   connection:{
+      //     'Content-Type': 'multipart/form-data',
+      //   },
+      // },
+      body: {files: formData},
     });
   },
 

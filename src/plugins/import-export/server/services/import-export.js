@@ -6,12 +6,27 @@ module.exports = ({strapi}) => ({
 
   async uploadAndImport(data) {
     // Create entries using Strapi services and models
+
     // const {model} = strapi.db.query('api::restaurants.restaurants');
-    const {model} = strapi.query('restaurants');
-    console.log("model: ", model)
-    // for (const entryData of data) {
-    //   await model.create(entryData);
-    // }
+
+    // const {model} = strapi.query('api::restaurant.restaurant');
+
+    // await strapi.entityService.create("")
+    // console.log("model: ", model);
+
+    // console.log("all data: ", data);
+    const {'api::restaurant.restaurant': restaurants} = data
+    const {'api::category.category': categories} = data
+
+    console.log("restaurants: ", restaurants);
+    console.log("categories: ", categories);
+
+    // const restaurantData = data[`'api::restaurant.restaurant'`];
+    // console.log("restaurantData: ",restaurantData);
+    for (const restaurantData of restaurants) {
+      console.log("--restaurantData: ", restaurantData)
+      // await model.create(entryData);
+    }
 
     return;
   },
@@ -28,5 +43,6 @@ module.exports = ({strapi}) => ({
 
     return [...restaurants, ...categories]
   },
+
 
 });

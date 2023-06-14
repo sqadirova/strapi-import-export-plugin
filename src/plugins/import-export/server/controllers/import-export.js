@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 
 module.exports = ({strapi}) => ({
   async exportRestaurants(ctx) {
@@ -31,15 +30,15 @@ module.exports = ({strapi}) => ({
   // },
 
   async uploadAndImport(ctx) {
-    console.log("11111")
-    console.log(ctx.request.files)
+    console.log("--ctx.request: ", ctx.request)
     const {file} = ctx.request.files;
     const filePath = file.path;
     const jsonData = fs.readFileSync(filePath, 'utf8');
     const data = JSON.parse(jsonData);
+    // const data = jsonData;
 
     // Process the data as needed
-    console.log("upload and import data: ", data);
+    // console.log("upload and import data: ", data);
 
     // Create entries using Strapi services and models
     // const {model} = strapi.query('restaurants');
@@ -49,8 +48,8 @@ module.exports = ({strapi}) => ({
     //   await model.create(entryData);
     // }
 
-    await strapi.plugin("import-export").service("importExportService").uploadAndImport(data)
 
+    await strapi.plugin("import-export").service("importExportService").uploadAndImport(data.data)
 
     // Delete the temporary file
     fs.unlinkSync(filePath);

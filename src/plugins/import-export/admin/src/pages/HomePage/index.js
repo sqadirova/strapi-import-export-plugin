@@ -18,12 +18,11 @@ import axios from 'axios';
 // const { request } = require('@strapi/helper-plugin');
 
 
-
 const HomePage = () => {
   const [restaurantsData, setRestaurantsData] = useState({restaurantsData: []});
   // const [isClicked, setIsClicked] = useState(false);
   const [allData, setAllData] = useState({allData: []});
-  const [token, setToken] = useState('');
+  // const [token, setToken] = useState('');
 
 
   const fetchData = async () => {
@@ -67,37 +66,57 @@ const HomePage = () => {
     setFile(event.target.files[0]);
   };
 
-  const handleImport = async () => {
+  const handleImport = async (ctx) => {
     console.log("Handle import!!!");
     const formData = new FormData();
     console.log("file: ", file)
     formData.append('file', file);
-    // console.log("formData: ", formData)
+    console.log("formData in HomePage: ", formData)
     // console.log("--token: ", token)
     // console.log(strapi.admin.user.jwtToken)
+    // console.log("ctx:", ctx.state);
 
     try {
-      // var importedData = importExportRequests.uploadAndImportData(formData);
-      // console.log("importedData: ", importedData);
+      // const loginData = {
+      //   identifier: 'siddiga.gadirova@gmail.com',
+      //   password: 'password!',
+      // };
+      //
+      // const login = await fetch(`http://localhost:1337/api/auth/local`, {
+      //   method: 'POST',
+      //   headers: {
+      //     Accept: 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(loginData),
+      // });
+      //
+      // const loginResponseData = await login.json();
+      // console.log("--loginResponseData: ",loginResponseData)
+
+
+      let importedData = importExportRequests.uploadAndImportData(formData);
+      console.log("--importedData: ", importedData);
 
 
       // let importedData = await request('http://localhost:1337/import-export/import/upload', {
       //   method: "POST",
       //   headers: {
       //     'Content-Type': 'multipart/form-data',
-      //     Authorization: 'Bearer ' + token,
+      //     Authorization: `Bearer ${token}`
       //   },
       //   body:formData,
       // });
 
-      let importedData = await axios.post('http://localhost:1337/import-export/import/upload', formData, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      // let importedData = await axios.post('http://localhost:1337/import-export/import/upload', formData, {
+      //   method: "POST",
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data',
+      //     Authorization: `Bearer ${loginResponseData.jwt}`,
+      //   },
+      // });
 
-      // console.log(importedData.data)
+      console.log(importedData)
 
       // Handle success, e.g., show success message
     } catch (error) {

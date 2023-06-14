@@ -12,6 +12,7 @@ module.exports = ({env}) => ({
       // Example: Verify the token and set user information in the context state
       const token = ctx.request.headers['authorization'];
       console.log("--token: ",token)
+      console.log("--env.token: ",env.token)
       if (!token) {
         ctx.throw(401, 'No token provided');
       }

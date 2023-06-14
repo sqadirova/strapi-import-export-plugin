@@ -1,8 +1,9 @@
 module.exports = async (ctx, next) => {
-  console.log("---ctx.state.user: ",ctx.state.user)
+  console.log("---ctx.state.user in policy: ",ctx.state.user)
   if (ctx.state.user) {
-    await next();
+     return next;
   } else {
     return ctx.throw(401,'You are not authenticated.');
   }
+  return next;
 };
