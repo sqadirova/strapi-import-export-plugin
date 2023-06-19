@@ -1,4 +1,4 @@
-import {request, useFetchClient} from "@strapi/helper-plugin";
+import {request} from "@strapi/helper-plugin";
 
 const importExportRequests = {
   getAllRestaurants: async () => {
@@ -21,7 +21,7 @@ const importExportRequests = {
       //     'Content-Type': 'multipart/form-data',
       //   },
       // },
-      body: {files: formData},
+      body: formData,
     });
   },
 

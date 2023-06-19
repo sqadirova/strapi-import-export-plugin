@@ -30,8 +30,15 @@ module.exports = ({strapi}) => ({
   // },
 
   async uploadAndImport(ctx) {
-    console.log("--ctx.request: ", ctx.request)
-    const {file} = ctx.request.files;
+    console.log("--ctx.request: ", ctx.request);
+    console.log("--ctx.request.files: ", ctx.request.files);
+
+    // const ctxx = strapi.requestContext.get();
+    // console.log('--User info in service: ', ctxx.state.user);
+    // console.log("--ctxx.request.files: ", ctxx.request.files)
+
+
+    const file = ctx.request.files.file;
     const filePath = file.path;
     const jsonData = fs.readFileSync(filePath, 'utf8');
     const data = JSON.parse(jsonData);
@@ -47,7 +54,6 @@ module.exports = ({strapi}) => ({
     // for (const entryData of data) {
     //   await model.create(entryData);
     // }
-
 
     await strapi.plugin("import-export").service("importExportService").uploadAndImport(data.data)
 
