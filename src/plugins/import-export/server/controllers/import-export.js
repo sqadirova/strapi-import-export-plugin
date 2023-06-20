@@ -30,12 +30,17 @@ module.exports = ({strapi}) => ({
   // },
 
   async uploadAndImport(ctx) {
-    console.log("--ctx.request: ", ctx.request);
-    console.log("--ctx.request.files: ", ctx.request.files);
+    // console.log("--ctx.request: ", ctx.request);
+    // console.log("--ctx.request: ", ctx.request);
+
+    console.log("--ctx: ",ctx.request);
 
     // const ctxx = strapi.requestContext.get();
     // console.log('--User info in service: ', ctxx.state.user);
-    // console.log("--ctxx.request.files: ", ctxx.request.files)
+    // console.log("--1-ctxx.request.files: ", ctxx.request.files);
+    // console.log("--2-ctx.request.file: ", ctx.request.file);
+    // const {file} = ctx.request.files;
+    // console.log("{file}: ",file)
 
 
     const file = ctx.request.files.file;
