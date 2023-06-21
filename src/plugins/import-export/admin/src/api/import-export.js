@@ -15,11 +15,16 @@ const importExportRequests = {
 
   uploadAndImportData: async (formData) => {
     console.log("formData in requests: ", formData)
-    // request.upload({formData})
+    // console.log("ctx in requests: ",ctx);
+
+    const boundary = `boundary-${new Date().getTime()}`;
+    const headers = new Headers();
+    headers.append('Content-Type', `multipart/form-data; boundary=${boundary}`);
+
     const response = await request('/import-export/import/upload', {
       method: 'POST',
       headers: {
-        'Content-Type': 'form-data', // Add the Content-Type header
+        'Content-Type': `multipart/form-data;`
       },
       body: formData,
     });

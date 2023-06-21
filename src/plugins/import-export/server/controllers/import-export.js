@@ -33,7 +33,7 @@ module.exports = ({strapi}) => ({
     // console.log("--ctx.request: ", ctx.request);
     // console.log("--ctx.request: ", ctx.request);
 
-    console.log("--ctx: ",ctx.request);
+    console.log("--ctx.request: ",ctx.request);
 
     // const ctxx = strapi.requestContext.get();
     // console.log('--User info in service: ', ctxx.state.user);

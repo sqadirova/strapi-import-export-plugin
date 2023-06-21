@@ -10,6 +10,7 @@ import {Button, Layout, BaseHeaderLayout, ContentLayout, EmptyStateLayout} from 
 import importExportRequests from "../../api/import-export";
 import {Illo} from "../../components/Illo";
 import JsonDataList from "../../components/JsonDataList";
+// import FormData from 'form-data';
 // import FileUploadSingle from "../../components/ImportData"
 // import ImportData from "../../components/ImportData";
 // import {JSONInput} from '@strapi/design-system';
@@ -73,71 +74,76 @@ const HomePage = () => {
     console.log("Handle import!!!");
     // console.log("file: ", file);
     const formData = new FormData()
-    formData.append("file", file)
-
-    fetch('http://localhost:1337/import-export/import/upload', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg2NzM3ODg5LCJleHAiOjE2ODkzMjk4ODl9.JMvDTUhs7pjSwwaORXOyLeodcEAEXUhVDSVknW4ICQo"
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-      })
-      .catch(error => {
-        console.error(error)
-      });
+    formData.append("file", file);
 
     // console.log("formData in HomePage: ", formData);
     // console.log("--token: ", token)
     // console.log(strapi.admin.user.jwtToken)
     // console.log("ctx:", ctx.state);
 
-    // try {
-    //   // const loginData = {
-    //   //   identifier: 'siddiga.gadirova@gmail.com',
-    //   //   password: 'password!',
-    //   // };
-    //   //
-    //   // const login = await fetch(`http://localhost:1337/api/auth/local`, {
-    //   //   method: 'POST',
-    //   //   headers: {
-    //   //     Accept: 'application/json',
-    //   //     'Content-Type': 'application/json',
-    //   //   },
-    //   //   body: JSON.stringify(loginData),
-    //   // });
-    //   //
-    //   // const loginResponseData = await login.json();
-    //   // console.log("--loginResponseData: ",loginResponseData)
-    //
-    //   let importedData = await importExportRequests.uploadAndImportData(formData);
-    //   console.log("--importedData: ", importedData);
-    //
-    //
-    //   // await request('http://localhost:1337/import-export/import/upload', {
-    //   //     method: "POST",
-    //   //     header: {
-    //   //       'Content-Type': 'multipart/form-data',
-    //   //
-    //   //     },
-    //   //     body:formData,
-    //   //   });
-    //
-    //   // await axios.post('http://localhost:1337/import-export/import/upload', formData, {
-    //   //       method: "POST",
-    //   //       headers: {
-    //   //         'Content-Type': 'multipart/form-data',
-    //   //         Authorization: `Bearer ${loginResponseData.jwt}`,
-    //   //       },
-    //   //     });
-    //
-    //
-    // } catch (error) {
-    //   console.log("error: ", error);
-    // }
+    try {
+      const loginData = {
+        identifier: 'siddiga.gadirova@gmail.com',
+        password: 'password!',
+      };
+
+      const login = await fetch(`http://localhost:1337/api/auth/local`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      const loginResponseData = await login.json();
+      console.log("--loginResponseData: ",loginResponseData)
+
+
+      //1ci
+      fetch('http://localhost:1337/import-export/import/upload', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          // "Authorization": `Bearer ${loginResponseData.jwt}`,
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg2NzM3ODg5LCJleHAiOjE2ODkzMjk4ODl9.JMvDTUhs7pjSwwaORXOyLeodcEAEXUhVDSVknW4ICQo"
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+        })
+        .catch(error => {
+          console.error(error)
+        });
+
+
+
+      // let importedData = await importExportRequests.uploadAndImportData(formData);
+      // console.log("--importedData: ", importedData);
+
+
+      // await request('http://localhost:1337/import-export/import/upload', {
+      //     method: "POST",
+      //     header: {
+      //       'Content-Type': 'multipart/form-data',
+      //
+      //     },
+      //     body:formData,
+      //   });
+
+      // await axios.post('http://localhost:1337/import-export/import/upload', formData, {
+      //       method: "POST",
+      //       headers: {
+      //         'Content-Type': 'multipart/form-data',
+      //         Authorization: `Bearer ${loginResponseData.jwt}`,
+      //       },
+      //     });
+
+
+    } catch (error) {
+      console.log("error: ", error);
+    }
 
   };
 
