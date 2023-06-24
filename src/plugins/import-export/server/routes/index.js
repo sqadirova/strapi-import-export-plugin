@@ -1,5 +1,5 @@
-const {authPolicy} = require("../policies");
-const {jwtMiddleware} = require("../middlewares");
+// const {authPolicy} = require("../policies");
+// const {jwtMiddleware} = require("../middlewares");
 
 
 module.exports = [
@@ -32,11 +32,10 @@ module.exports = [
     path: '/import/upload',
     handler: 'importExportController.uploadAndImport',
     config: {
-      create: {
-        auth: false
-      },
+      auth: false,
       policies: [],
     },
+    // middlewares:[],
   },
 
 ];

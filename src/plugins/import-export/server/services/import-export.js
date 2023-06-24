@@ -13,24 +13,18 @@ module.exports = ({strapi}) => ({
     // console.log("restaurants: ", restaurants);
     // console.log("categories: ", categories);
 
-    //convert to array
+    //convert to array restaurants
     let restaurantsArr = Object.values(restaurants);
     console.log("--restaurantsArr: ", restaurantsArr);
     const createdRestaurants = await strapi.db.query("api::restaurant.restaurant").createMany({data: restaurantsArr});
     console.log("--createdRestaurants: ", createdRestaurants);
 
 
-    //convert to array
+    //convert to array restaurants
     let categoriesArr = Object.values(categories);
     console.log("--categoriesArr: ", categoriesArr);
     const createdCategories = await strapi.db.query("api::category.category").createMany({data: categoriesArr});
     console.log("--createdCategories: ", createdCategories);
-
-
-    // for (const categoryData of categoriesArr) {
-    //   console.log("--categoryData: ", categoryData);
-    //   await strapi.entityService.create("api::category.category", categoryData);
-    // }
 
     return;
   },
